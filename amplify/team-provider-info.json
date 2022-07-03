@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-gymtrackerapp-dev-230210-authRole",
+      "UnauthRoleArn": "arn:aws:iam::477925425313:role/amplify-gymtrackerapp-dev-230210-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::477925425313:role/amplify-gymtrackerapp-dev-230210-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-gymtrackerapp-dev-230210-deployment",
+      "UnauthRoleName": "amplify-gymtrackerapp-dev-230210-unauthRole",
+      "StackName": "amplify-gymtrackerapp-dev-230210",
+      "StackId": "arn:aws:cloudformation:eu-west-2:477925425313:stack/amplify-gymtrackerapp-dev-230210/143b97f0-f981-11ec-b02d-027c59494a30",
+      "AmplifyAppId": "d1nfupfgnjhrbb"
+    },
+    "categories": {
+      "auth": {
+        "gymtrackerappd7b0df5b": {}
+      }
+    }
+  }
+}

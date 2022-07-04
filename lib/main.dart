@@ -2,10 +2,17 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
+import 'package:gym_tracker/views/exercises.dart';
+import 'package:gym_tracker/views/history.dart';
+import 'package:gym_tracker/views/measure.dart';
+import 'package:gym_tracker/views/workout.dart';
+import 'package:gym_tracker/views/profile.dart';
 import 'amplifyconfiguration.dart';
 
+// import 'components/drawer.dart';
+
 void printWrapped(String text) {
-  final pattern = new RegExp('.{1,800}'); // 800 is the size of each chunk
+  final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
   pattern.allMatches(text).forEach((match) => print(match.group(0)));
 }
 
@@ -37,7 +44,8 @@ class _MyAppState extends State<MyApp> {
       final result = await Amplify.Auth.fetchAuthSession(
         options: CognitoSessionOptions(getAWSCredentials: true),
       );
-      String? identityId = (result as CognitoAuthSession).userPoolTokens!.idToken;
+      String? identityId =
+          (result as CognitoAuthSession).userPoolTokens!.idToken;
       print('printing results of getting fetch auth session');
       printWrapped(identityId);
     } on Exception catch (e) {
@@ -45,122 +53,23 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return MaterialApp(
-  //     title: 'Gym tracker',
-  //     theme: ThemeData(
-  //       primarySwatch: Colors.blue,
-  //     ),
-  //     home: const MyHomePage(title: 'Gym tracker'),
-  //   );
-  // }
   @override
   Widget build(BuildContext context) {
     return Authenticator(
       child: MaterialApp(
-        builder: Authenticator.builder(),
-        home: const Scaffold(
-          body: Center( child: Text('You are logged in!'),)
-        )
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // T
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+          title: 'Gym tracker',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-          ),
-        ],
-        currentIndex: 1,
-        selectedItemColor: Colors.amber[800],
-        onTap: (ww) {},
-      ),// h
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.message),
-              title: Text('Messages'),
-            ),
-            ListTile(
-              leading: Icon(Icons.abc),
-              title: Text('Profile'),
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-            ),
-          ],
-        ),
-      ),
+          builder: Authenticator.builder(),
+          home: const Workout(),
+      routes: {
+            '/workout': (context) => const Workout(),
+        '/profile': (context) => const Profile(),
+        '/history': (context) => const History(),
+        '/measure': (context) => const Measure(),
+        '/exercises': (context) => const Exercises()
+      },),
     );
   }
 }

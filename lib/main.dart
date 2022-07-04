@@ -4,6 +4,11 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
 import 'amplifyconfiguration.dart';
 
+void printWrapped(String text) {
+  final pattern = new RegExp('.{1,800}'); // 800 is the size of each chunk
+  pattern.allMatches(text).forEach((match) => print(match.group(0)));
+}
+
 void main() {
   runApp(const MyApp());
 }
@@ -28,6 +33,13 @@ class _MyAppState extends State<MyApp> {
       await Amplify.addPlugin(auth);
 
       await Amplify.configure(amplifyconfig);
+
+      final result = await Amplify.Auth.fetchAuthSession(
+        options: CognitoSessionOptions(getAWSCredentials: true),
+      );
+      String? identityId = (result as CognitoAuthSession).userPoolTokens!.idToken;
+      print('printing results of getting fetch auth session');
+      printWrapped(identityId);
     } on Exception catch (e) {
       print('An error occurred configuring Amplify: $e');
     }

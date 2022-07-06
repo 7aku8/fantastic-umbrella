@@ -2,11 +2,10 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
-import 'package:gym_tracker/views/exercises.dart';
-import 'package:gym_tracker/views/history.dart';
-import 'package:gym_tracker/views/measure.dart';
-import 'package:gym_tracker/views/workout.dart';
-import 'package:gym_tracker/views/profile.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gym_tracker/cubit/app_cubit.dart';
+import 'package:gym_tracker/cubit/app_cubit_logic.dart';
+import 'package:gym_tracker/services/data_service.dart';
 import 'amplifyconfiguration.dart';
 
 // import 'components/drawer.dart';
@@ -62,14 +61,11 @@ class _MyAppState extends State<MyApp> {
             primarySwatch: Colors.blue,
           ),
           builder: Authenticator.builder(),
-          home: const Workout(),
-      routes: {
-            '/workout': (context) => const Workout(),
-        '/profile': (context) => const Profile(),
-        '/history': (context) => const History(),
-        '/measure': (context) => const Measure(),
-        '/exercises': (context) => const Exercises()
-      },),
+          home: BlocProvider<AppCubits>(
+            create: (context) => AppCubits(data: DataServices()),
+            child: const AppCubitLogics(),
+          ),
+     ),
     );
   }
 }

@@ -255,7 +255,7 @@ packages:
     source: hosted
     version: "2.1.2"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       url: "https://pub.dartlang.org"
@@ -308,6 +308,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  ternav_icons:
+    dependency: "direct main"
+    description:
+      name: ternav_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   test_api:
     dependency: transitive
     description:

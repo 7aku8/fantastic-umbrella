@@ -2,10 +2,9 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gym_tracker/cubit/app_cubit.dart';
-import 'package:gym_tracker/cubit/app_cubit_logic.dart';
-import 'package:gym_tracker/services/data_service.dart';
+import 'package:gym_tracker/screens/home.dart';
+import 'package:provider/provider.dart';
+import 'app/notifiers/app_notifiers.dart';
 import 'amplifyconfiguration.dart';
 
 // import 'components/drawer.dart';
@@ -58,13 +57,15 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
           title: 'Gym tracker',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.green,
           ),
           builder: Authenticator.builder(),
-          home: BlocProvider<AppCubits>(
-            create: (context) => AppCubits(data: DataServices()),
-            child: const AppCubitLogics(),
-          ),
+          home: MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_)=> AppNotifiers())
+            ],
+            child: const HomeScreen(),
+          )
      ),
     );
   }

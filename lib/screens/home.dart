@@ -51,30 +51,31 @@ class _HomeScreenState extends State<HomeScreen> {
           iconSize: 28,
           backgroundColor: AppColors.kBlack,
           selectedItemColor: AppColors.kGreen,
+          unselectedItemColor: Colors.white70,
           selectedLabelStyle:
             const TextStyle(fontFamily: "MTRIADPRO", fontSize: 13),
           items: [
             BottomNavigationBarItem(
               icon: Icon(TernavIcons.bold.home_2),
-              label: 'Home',
+              label: 'Profile',
             ),
             BottomNavigationBarItem(
               icon: Icon(TernavIcons.bold.bag),
-              label: 'Market',
+              label: 'History',
             ),
             BottomNavigationBarItem(
               icon: Icon(TernavIcons.bold.dollar),
-              label: 'Trade',
+              label: 'Workout',
             ),
             BottomNavigationBarItem(
               icon: Icon(TernavIcons.bold.note),
-              label: "Activity",
+              label: "Exercise",
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 TernavIcons.bold.wallet,
               ),
-              label: "Wallet",
+              label: "Measure",
             )
           ],
           onTap: (index) {

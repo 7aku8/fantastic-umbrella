@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker/screens/workout.dart';
 
 import '../../screens/home.dart';
 
 class AppRoutes {
-  static const String homeRoute = "/home";
+  static const String workoutRoute = '/workout';
   static const String workoutTemplateRoute = '/workout-template';
 
   static Route? generateRoute(RouteSettings settings) {
     switch(settings.name) {
-      case homeRoute: {
-        return MaterialPageRoute(builder: (_) => const Text('witam panstwa serdecznie'));
+      case workoutRoute: {
+        return MaterialPageRoute(builder: (_) => const WorkoutScreen());
       }
       case workoutTemplateRoute: {
         return MaterialPageRoute(builder: (_) => const HomeScreen());

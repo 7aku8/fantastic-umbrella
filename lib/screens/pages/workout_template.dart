@@ -12,6 +12,11 @@ class WorkoutTemplatePage extends StatefulWidget {
 
 class _WorkoutTemplatePageState extends State<WorkoutTemplatePage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -56,16 +61,14 @@ class _WorkoutTemplatePageState extends State<WorkoutTemplatePage> {
               style: TextStyle(color: Colors.white60, fontSize: 12)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              const Text('SAMPLE TEMPLATES',
+            children: const  <Widget>[
+              Text('SAMPLE TEMPLATES',
                   style: TextStyle(color: Colors.white70)),
-              Stack(
-                children: <Widget>[
-                  InkWell(
-                    borderRadius: BorderRadius.circular(10),
-                  )
-                ],
-              )
+              // Stack(
+              //   children: <Widget>[
+              //     Text('asdflhj')
+              //   ],
+              // )
             ],
           ),
         ],

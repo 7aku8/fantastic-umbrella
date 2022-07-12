@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(14),
         child: BottomNavigationBar(
+          elevation: 0,
           currentIndex: _currentIndex,
           type: BottomNavigationBarType.fixed,
           iconSize: 28,
